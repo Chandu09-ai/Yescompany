@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Oyes bank - Login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <header>
+		<h1>YES BANK</h1>
+	</header>
+
+	<nav>
+		<ul>
+			<li><a href="Home.html">Home</a></li>
+			<li><a href="options.html">options</a></li>
+			<li><a href="Aboutus.html">About Us</a></li>
+			<li><a href="logout.html">Logout</a></li>
+
+		</ul>
+	</nav>
+
+    <main>
+        <section>
+            <h2>Login</h2>
+            <form id="login-form" action="/login" method="post">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn">Login</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    
+
+    <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
+<script>
+    document.getElementById('login-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+
+       
+        if (username === 'prasad'||'chandu'||'ramana'||'sameer'||'yaswanth' && password === '1234'||'3456') {
+            window.location.href = 'dashboard.html'; 
+        } else {
+            alert('Invalid username or password'); 
+        }
+    });
+</script>
+<footer>
+        <p>&copy; 2023 YES Bank. All rights reserved.</p>
+    </footer>
+</body>
+</html>

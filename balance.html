@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Balance Enquiry</title>
+    <link rel="stylesheet" href="options.css">
+</head>
+<body>
+    <header>Balance Enquiry</header>
+	<nav>
+		<ul>
+			<li><a href="Home.html">Home</a></li>
+			<li><a href="balance.html" class="active">Balance Enquiry</a></li>
+			<li><a href="cardtocard.html">card to card</a></li>
+			<li><a href="cashdeposite.html">cash deposit</a></li>
+			<li><a href="cashwithdraw.html">cash withdraw</a></li>
+			<li><a href="pinchange.html">pin change</a></li>
+			<li><a href="logout.html">Logout</a></li>
+		</ul>
+	</nav>
+	<p id=00></p>
+    <form id="balance-enquiry-form">
+        <label for="account-number">Account Number:</label>
+        <input type="text" id="account-number" required><br>
+		
+		<label for="pin-number">Pin Number:</label>
+        <input type="password" id="pin-number" required><br>
+
+        <button type="submit">Check Balance</button>
+    </form>
+    <script>
+	document.getElementById('balance-enquiry-form').addEventListener('submit', function(event) 
+	{
+    event.preventDefault();
+    const accountNumber = document.getElementById('account-number').value;
+	const pinNumber = document.getElementById('pin-number').value;
+
+    if (accountNumber === '1234' || pinNumber === '3456') {
+        document.getElementById("details").innerHTML="Your Balance is:10000."
+        return;
+    }
+
+    
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', '/balance.html', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            const response = JSON.parse(xhr.responseText);
+            alert(`Account balance: $${response.balance.toFixed(2)}`);
+        } else {
+            alert('Error checking balance. Please try again later.');
+        }
+    };
+    xhr.send(JSON.stringify({
+        accountNumber: accountNumber
+    }));
+});
+
+	</script>
+	
+</body>
+<p id="details"></p>
+<footer>
+        <p>&copy; 2023 YES Bank. All rights reserved.</p>
+    </footer>
+</html>

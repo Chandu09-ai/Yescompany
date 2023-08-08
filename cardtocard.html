@@ -1,0 +1,78 @@
+<!-- transfer.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Card-to-Card Money Transfer</title>
+	<link rel="stylesheet" href="options.css">
+
+</head>
+<body>
+    <header>Card-to-Card Money Transfer</header>
+	<nav>
+		<ul>
+			<li><a href="Home.html">Home</a></li>
+			<li><a href="balance.html">Balance Enquiry</a></li>
+			<li><a href="cardtocard.html" class="active">card to card</a></li>
+			<li><a href="cashdeposite.html">cash deposit</a></li>
+			<li><a href="cashwithdraw.html">cash withdraw</a></li>
+			<li><a href="pinchange.html">pin change</a></li>
+			<li><a href="logout.html">Logout</a></li>
+		</ul>
+	</nav>
+	<p id=00></p>
+    <form id="transfer-form">
+        <label for="from-card">From Card:</label>
+        <input type="text" id="from-card" name="from_card" required><br>
+
+        <label for="to-card">To Card:</label>
+        <input type="text" id="to-card" name="to_card" required><br>
+
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount" min="1" required><br>
+
+        <label for="pin">PIN:</label>
+        <input type="password" id="pin" name="pin" required><br>
+
+        <button type="submit">Transfer</button>
+    </form>
+<script>
+   document.getElementById('transfer-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const fromCard = document.getElementById('from-card').value;
+    const toCard = document.getElementById('to-card').value;
+	const pin = document.getElementById('pin').value;
+    const amount = parseFloat(document.getElementById('amount').value);
+
+    // Perform validation (e.g., check for valid card numbers, non-negative amount)
+    if (fromCard === '1234' || toCard === '5678' || pin==='3456'||  isNaN(amount) || amount <= 1000) {
+        document.getElementById("details1").innerHTML="Money Transfferd successfully."
+		return;
+    }
+
+    // Perform AJAX request to the backend to handle the card transfer
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', '/transfer', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            alert('Money transferred successfully!');
+        } else {
+            alert('Error transferring money. Please try again later.');
+        }
+    };
+    xhr.send(JSON.stringify({
+        fromCard: fromCard,
+        toCard: toCard,
+        amount: amount,
+		pin:pin
+    }));
+});
+</script>
+	
+</body>
+<p id="details1"></p>
+<footer>
+        <p>&copy; 2023 YES Bank. All rights reserved.</p>
+    </footer>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Logout</title>
+    <link rel="stylesheet" href="options.css">
+</head>
+<body>
+    <header>Logout</header>
+    <p style=margin-left:40px>Click the button below to logout</p>
+    <button id="logout-btn" class="active" style=margin-left:60px>Logout</button>
+    <script>
+	document.getElementById('logout-btn').addEventListener('click', function() {
+    // clear session or local storage
+    sessionStorage.clear();
+    // or localStorage.clear();
+    
+    // Redirect to login page
+    window.location.href = 'login.html';
+});
+
+	</script>
+</body>
+</html>

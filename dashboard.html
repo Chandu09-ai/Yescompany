@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Banking System - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+	
+</head>
+<body>
+<header>
+		<h1>Online Banking System</h1>
+	</header>
+	<nav>
+		<ul>
+			<li><a href="Home.html">Home</a></li>
+			<li><a href="options.html">options</a></li>
+			<li><a href="Aboutus.html">About Us</a></li>
+			<li><a href="logout.html">Logout</a></li>
+		</ul>
+	</nav>
+    <main>
+        <section>
+            <h2>Welcome <span id="username"></span>!</h2>
+            <div class="account-summary">
+                <h3>Account Summary</h3>
+                <p>Account Number: <span id="account-number"></span></p>
+                <p>Available Balance: <span id="balance"></span></p>
+            </div>
+	
+
+    <footer>
+        <p>&copy; 2023 YES Bank. All rights reserved.</p>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
+    <script>
+	// Get the user's information from the server-side or session
+var username = 'prasad'||'chandu'||'ramana'||'sameer'||'yaswanth';
+var accountNumber = '40459107749';
+var balance = '19,800.00';
+
+// Update the DOM with the user's information
+document.getElementById('username').textContent = username;
+document.getElementById('account-number').textContent = accountNumber;
+document.getElementById('balance').textContent = balance;
+
+	</script>
+</body>
+
+</html>

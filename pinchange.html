@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pin Change</title>
+    <link rel="stylesheet" href="options.css">
+</head>
+<body>
+    <header>Pin Change</header>
+	<nav>
+		<ul>
+			<li><a href="Home.html">Home</a></li>
+			<li><a href="balance.html">Balance Enquiry</a></li>
+			<li><a href="cardtocard.html">card to card</a></li>
+			<li><a href="cashdeposite.html">cash deposit</a></li>
+			<li><a href="cashwithdraw.html">cash withdraw</a></li>
+			<li><a href="pinchange.html" class="active">pin change</a></li>
+			<li><a href="logout.html">Logout</a></li>
+		</ul>
+	</nav>
+	<p id=00></p>
+    <form id="pin-change-form">
+        <label for="account-number">Account Number:</label>
+        <input type="text" id="account-number" required><br>
+
+        <label for="current-pin">Current PIN:</label>
+        <input type="password" id="current-pin" required><br>
+
+        <label for="new-pin">New PIN:</label>
+        <input type="password" id="new-pin" required><br>
+
+        <label for="confirm-pin">Confirm New PIN:</label>
+        <input type="password" id="confirm-pin" required><br>
+
+        <button type="submit">Change PIN</button>
+    </form>
+    <script>
+	document.getElementById('pin-change-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const accountNumber = document.getElementById('account-number').value;
+    const currentPIN = document.getElementById('current-pin').value;
+    const newPIN = document.getElementById('new-pin').value;
+    const confirmPIN = document.getElementById('confirm-pin').value;
+
+    // Perform validation (e.g., check for valid account number, matching new PIN and confirm PIN)
+    if (accountNumber === '1234' || currentPIN === '3456' || newPIN === '5678' || confirmPIN === 'newPIN') {
+        document.getElementById("details3").innerHTML="PIN Changed successfully."
+        return;
+    }
+
+    if (newPIN !== confirmPIN) {
+        alert('New PIN and Confirm New PIN do not match.');
+        return;
+    }
+
+    // Perform AJAX request to the backend to handle the PIN change
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', '/pin_change', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            alert('PIN changed successfully!');
+        } else {
+            alert('Error changing PIN. Please try again later.');
+        }
+    };
+    xhr.send(JSON.stringify({
+        accountNumber: accountNumber,
+        currentPIN: currentPIN,
+        newPIN: newPIN
+    }));
+});
+
+	</script>
+</body>
+<p id="details3"></p>
+<footer>
+        <p>&copy; 2023 YES Bank. All rights reserved.</p>
+    </footer>
+</html>
